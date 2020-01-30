@@ -16,7 +16,7 @@
 			<ion-col>
 				<ion-img src="../assets/images/call.png" class="img"></ion-img>
 				<h4 class="contact-p">Call for any queries</h4>
-				<p class="contact-p">+91-9XXXXXXXX</p>
+				<p class="contact-p">+91-7000135930</p>
 			</ion-col>
 
 		</ion-row>
@@ -25,9 +25,35 @@
 			<ion-col>
 				<ion-img src="../assets/images/address.png" class="img"></ion-img>
 				<h4 class="contact-p">Address</h4>
-				<p class="contact-p">Kadam Plaza Shop no. XX</p>
+				<p class="contact-p">Kadam Plaza  </p>
 				<p class="contact-p">Borsi, Durg,(C.G)</p>
 			</ion-col>
 
 		</ion-row>
 </ion-content>
+<ion-footer>
+  <ion-tabs class="tabs">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button [routerLink]="['/wallet']">
+      <ion-icon name="wallet"></ion-icon>
+      <ion-label>Wallet</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/maintenance']">
+      <ion-icon name="flame"></ion-icon>
+      <ion-label>Latest Arrival</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/offers']">
+      <ion-icon name="gift"></ion-icon>
+      <ion-label>Offers</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="checkLogin()">
+      <ion-icon name="cart"></ion-icon>
+      <ion-label>Cart</ion-label>
+      <ion-badge *ngIf='cart'>{{cart}}</ion-badge>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+</ion-footer>
