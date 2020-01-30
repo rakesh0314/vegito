@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-title>Order History</ion-title>
+     <ion-buttons slot="start">
+        <ion-back-button defaultHref="home" text="" icon="close"></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="orders">
+	<ion-card *ngFor="let item of orders" class="card">
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					<h4>Order No. {{item.id}}</h4>
+					<ion-row>
+						<ion-col>
+							<p>Total Products</p>
+							<p>Total price</p>
+							<p class="mg-btm">Status</p>
+						</ion-col>
+						<ion-col>
+							<p>{{item.quantity}}</p>
+							<p>₹ {{item.net_amount}}</p>
+							<p *ngIf="item.status==0" class="tetx-danger">Pending</p>
+							<p *ngIf="item.status==1" class="text-warn">Process</p>
+							<p *ngIf="item.status==2" class="tetx-success">Orderd Delivered</p>
+						</ion-col>
+						<ion-col>
+							<ion-button class="view-btn" [routerLink]="['/order-details',item.id]">View</ion-button>
+						</ion-col>
+					</ion-row>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-card>
+</ion-content>
+<ion-content *ngIf="noorder">
+	<ion-grid class="grid-mg">
+		<ion-row>
+			<ion-col size='12'>
+				<ion-img src="../assets/images/no-orders.png" class="img"></ion-img>
+				<h3>No orders yet</h3>
+				<ion-row>
+					<ion-col size="2"></ion-col>
+					<ion-col>
+						<ion-button class='btn-1' expand="block" size="medium" [routerLink]="['/home']">Shop now</ion-button>
+					</ion-col>
+					<ion-col size="2"></ion-col>
+				</ion-row>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-tabs class="tabs">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button [routerLink]="['/wallet']">
+      <ion-icon name="wallet"></ion-icon>
+      <ion-label>Wallet</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/maintenance']">
+      <ion-icon name="flame"></ion-icon>
+      <ion-label>Latest Arrival</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/offers']">
+      <ion-icon name="gift"></ion-icon>
+      <ion-label>Offers</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="checkLogin()">
+      <ion-icon name="cart"></ion-icon>
+      <ion-label>Cart</ion-label>
+      <ion-badge *ngIf='cart'>{{cart}}</ion-badge>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+</ion-footer>

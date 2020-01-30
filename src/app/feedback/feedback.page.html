@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-buttons slot="start">
+      <ion-back-button defaultHref="/order-history"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Feedback</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-grid class="bg_color border_bottom">
+		<ion-row>
+			<ion-col class="">
+			<p class="heading">Send your feedback!</p>
+			<p class="heading">Your feedback is valuable to us!</p>
+		</ion-col>
+		</ion-row>
+		
+	</ion-grid>
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+				<p class="exp">How was your experience?</p>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col size="2"></ion-col>
+			<ion-col class="col-pd-left">
+			<div class="rate padding">
+		    <input type="radio" id="star5" name="rate" value="5" />
+		    <label for="star5" title="text">5 stars</label>
+		    <input type="radio" id="star4" name="rate" value="4" />
+		    <label for="star4" title="text">4 stars</label>
+		    <input type="radio" id="star3" name="rate" value="3" />
+		    <label for="star3" title="text">3 stars</label>
+		    <input type="radio" id="star2" name="rate" value="2" />
+		    <label for="star2" title="text">2 stars</label>
+		    <input type="radio" id="star1" name="rate" value="1" />
+		    <label for="star1" title="text">1 star</label>
+		  </div>
+			</ion-col>
+			<ion-col size="2"></ion-col>
+			
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				<ion-item>
+					<ion-textarea type="text" size="8" class="placholder_margin" placeholder="Describe your experience!!"></ion-textarea>
+				</ion-item>
+			</ion-col>
+		</ion-row>
+
+	</ion-grid>
+	<ion-grid>
+		<ion-row>
+			<ion-col size="2"></ion-col>
+			<ion-col>
+				<ion-button size="medium" class="btn1" expand="block" [routerLink]="['/home']">Send</ion-button>
+			</ion-col>
+			<ion-col size="2"></ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-tabs class="tabs">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button [routerLink]="['/wallet']">
+      <ion-icon name="wallet"></ion-icon>
+      <ion-label>Wallet</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/maintenance']">
+      <ion-icon name="flame"></ion-icon>
+      <ion-label>Latest Arrival</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/offers']">
+      <ion-icon name="gift"></ion-icon>
+      <ion-label>Offers</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="checkLogin()">
+      <ion-icon name="cart"></ion-icon>
+      <ion-label>Cart</ion-label>
+      <ion-badge *ngIf='cart'>{{cart}}</ion-badge>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+</ion-footer>

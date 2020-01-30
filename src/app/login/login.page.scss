@@ -1,0 +1,60 @@
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+.tbclr{
+	--background: rgba(139, 245, 31, 0.9098039215686274);
+	color: white;
+}
+.logoheader {
+       text-align: center;
+       font-family: 'Permanent Marker', cursive;
+       text-align: center;
+	   font-size: 4.8rem;
+	   color: white;
+	   margin-top: 120px;
+}
+.login-bg{
+
+--background: linear-gradient(to top left, rgba(0, 0, 0, 0.46), rgb(26, 27, 25)),url('../../assets/images/login-bg.jpg') no-repeat center / cover; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.lg-btn{
+	--background: rgba(139, 245, 31, 0.9098039215686274);
+    height: 55px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.p1{
+	text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+}
+.bg-trans{
+    --background: #ffffff;
+    color: #000000d6;
+    font-size: 20px;
+    border-radius: 10px;
+
+}
+.error-trans{
+  height: 20px;
+  border-radius: 15px;
+}
+.grid-mg{
+	margin-top: 30px;
+  margin-bottom: -40px;
+}
+.fg-mg{
+  margin-bottom: -10px;
+}
+
+.error{
+  color: red;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.text-center{
+  text-align: center;
+}

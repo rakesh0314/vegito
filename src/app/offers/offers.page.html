@@ -1,0 +1,41 @@
+<ion-content>
+<ion-grid class="mt">
+	<ion-row>
+		<ion-img src="../assets/images/offers.png" class="icn"></ion-img>
+	</ion-row>
+
+		<h2>Pick your Offers</h2>
+		<p>Get to Know the latest & best deals on Vegetables & Fruits...</p>
+		<ion-row>
+			<ion-col>
+				<ion-button class="btn-o" size="medium" [routerLink]="['/offers-page']" expand="block">Get Started</ion-button>
+			</ion-col>
+		</ion-row>
+</ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-tabs class="tabs">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button [routerLink]="['/wallet']">
+      <ion-icon name="wallet"></ion-icon>
+      <ion-label>Wallet</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/maintenance']">
+      <ion-icon name="flame"></ion-icon>
+      <ion-label>Latest Arrival</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/offers']">
+      <ion-icon name="gift"></ion-icon>
+      <ion-label>Offers</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="checkLogin()">
+      <ion-icon name="cart"></ion-icon>
+      <ion-label>Cart</ion-label>
+      <ion-badge *ngIf='cart'>{{cart}}</ion-badge>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+</ion-footer>

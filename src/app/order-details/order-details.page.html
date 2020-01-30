@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-title>Order Details</ion-title>
+     <ion-buttons slot="start">
+        <ion-back-button defaultHref="home" text="" icon="close"></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="product">
+	<h3 class="h3-pd">Delivery Address</h3>
+	<ion-card class="card">
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					<h4>{{product.address.category}}</h4>
+					<ion-row>
+						<ion-col>
+							<p>House no:{{product.address.house_no}} Street no:{{product.address.street_no}} 
+                                {{product.address.landmark}}, {{product.address.city}}, {{product.address.zip_code}}
+                            </p>
+							<p *ngIf="product.status==0" class="tetx-danger">Pending</p>
+							<p *ngIf="product.status==1" class="text-warn">Process</p>
+							<p *ngIf="product.status==2" class="tetx-success">Orderd Delivered</p>
+							<p class="mg-btm">{{product.date_time}}</p>
+						</ion-col>
+					</ion-row>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-card>	
+	<h3 class="h3-pd">Order summary</h3>
+	<ion-grid>
+	<ul *ngFor="let data of product.products">
+  	    <li>
+            <ion-grid class="pd-0">
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-img src="https://vegito.in/{{data.image}}"></ion-img>
+                    </ion-col>
+                    <ion-col size="8">
+                        <h5 class="text-size">{{data.name}} / {{data.sku}}</h5>
+                        <p class="">{{data.qty}} X {{data.unit}}(₹ {{data.sellprice}})</p>
+                        <p class="">{{data.qty*data.sellprice}}</p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </li>
+    </ul>
+    
+</ion-grid>
+</ion-content>
+<ion-footer>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-button expand="block" size="medium" class="chk-btn">Cancel order</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-footer>

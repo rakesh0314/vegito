@@ -1,0 +1,71 @@
+<ion-header translucent>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+        <ion-back-button defaultHref="home"icon="close"></ion-back-button>
+      </ion-buttons>
+        <h3>User details</h3>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-grid>
+		<ion-row [routerLink]='["/order-history"]'>
+			<ion-col size="2">
+				<ion-icon name="clipboard" class="icon"></ion-icon>
+			</ion-col>
+			<ion-col class="col-pd">
+				<p class="p">My orders</p>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col size="2">
+				<ion-icon name="heart" class="icon"></ion-icon>
+			</ion-col>
+			<ion-col class="col-pd">
+				<p class="p">My Favorite</p>
+			</ion-col>
+		</ion-row>
+		<ion-row [routerLink]='["/user-profile"]'>
+			<ion-col size="2">
+				<ion-icon name="settings" class="icon"></ion-icon>
+			</ion-col>
+			<ion-col class="col-pd">
+				<p class="p">My Account</p>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col size="2">
+				<ion-icon name="wallet" class="icon"></ion-icon>
+			</ion-col>
+			<ion-col class="col-pd">
+				<p class="p">Payment Details</p>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-tabs class="tabs">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button [routerLink]="['/wallet']">
+      <ion-icon name="wallet"></ion-icon>
+      <ion-label>Wallet</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/maintenance']">
+      <ion-icon name="flame"></ion-icon>
+      <ion-label>Latest Arrival</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/offers']">
+      <ion-icon name="gift"></ion-icon>
+      <ion-label>Offers</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="checkLogin()">
+      <ion-icon name="cart"></ion-icon>
+      <ion-label>Cart</ion-label>
+      <ion-badge *ngIf='cart'>{{cart}}</ion-badge>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+</ion-footer>

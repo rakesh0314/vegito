@@ -1,0 +1,93 @@
+<ion-header translucent>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+        <ion-back-button defaultHref="home"icon="close"></ion-back-button>
+      </ion-buttons>
+        <h3 >Cart</h3>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid class="pd-0 ptn">
+	<ion-grid *ngIf="cart">
+	<ul *ngFor="let product of cart;let i =index">
+        <li>
+            <ion-grid class="pd-0">
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-img class="img" src="{{imgUrl}}/{{product.image}}" [routerLink]="['/product-details',product.id_products]"></ion-img>
+                    </ion-col>
+                    <ion-col size="6" class="col-pd">
+                        <h5 class="text-size">{{product.name}} / {{product.sku}}</h5>
+                        <ion-grid class="grd-pd">
+                            <ion-row>
+                                <ion-col size="12" class="pd-0">
+                                <p class="qty-mg">{{product.unit}}</p><p class="qty-mg">X {{product.qty}}</p>    
+                                <p class="price-mg">Price: ₹ {{product.price}}</p>
+                            </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-col>
+                    <ion-col size="2">
+                        <ion-buttons >
+                            <ion-button class="add-btn" (click)="qtyplus(i)">
+                                <ion-icon name="add" class="ionicon"></ion-icon>
+                            </ion-button>
+                        </ion-buttons>
+                        <p class="counter">{{product.qty}}</p>
+                        <ion-buttons >
+                            <ion-button class="add-btn" (click)="qtyminus(i)">
+                                <ion-icon name="remove" class="ionicon"></ion-icon>
+                            </ion-button>
+                        </ion-buttons>
+                   </ion-col>
+                </ion-row>
+            </ion-grid>
+        </li>
+    </ul>
+    
+    </ion-grid>
+        <ion-grid *ngIf="nocart" class="grid-mg">
+            <ion-row>
+                <ion-col size='12'>
+                    <ion-img src="../assets/images/cart.svg" class="img1"></ion-img>
+                    <h3 class="nocarth">Your cart is empty</h3>
+                    <ion-row>
+                        
+                        <ion-col>
+                            <ion-button class='btn-1' expand="block" size="medium" [routerLink]="['/home']">Continune shopping</ion-button>
+                        </ion-col>
+                        
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+</ion-grid>
+</ion-content>
+<ion-footer *ngIf="cart" class="bg-c">
+    <ion-grid>
+        <ion-row>
+            <ion-col size="6">
+                <p class="pay-details1">Subtotal</p>
+                <hr>
+                <p class="pay-details1">Delivery fee</p>
+                <hr>
+                <p class="pay-details1">Total</p>
+            </ion-col>
+            <ion-col size="6">
+                <p class="pay-details2">₹ {{total}}</p>
+                <hr>
+                <p class="pay-details2">₹ {{delcharge}}</p>
+                <hr>
+                <p class="pay-details2">₹ {{totalprice}}</p>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-button expand="block" size="medium" class="chk-btn" (click)="payment_option()">Continune to checkout</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-footer>
+

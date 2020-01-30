@@ -1,0 +1,47 @@
+<ion-header translucent>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+        <ion-back-button defaultHref="home"icon="close"></ion-back-button>
+      </ion-buttons>
+        <h3 class="logoheader">Vegito</h3>
+        <p class="p1">Online Grocery App</p>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-grid>
+		<ion-img src="../assets/images/slider_banner_1.jpg"></ion-img>
+		<p class="p">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean malesuada eros leo, eu molestie ante congue vitae. In porta, est quis egestas ultricies, tortor elit porta ipsum, eget blandit magna elit non massa. Maecenas lobortis neque neque, eu aliquet elit vulputate nec. Vestibulum quis est vitae arcu pharetra mollis a vel nibh. Nunc diam dui, hendrerit a auctor eu, laoreet vitae ex. Mauris vitae nisi et felis sagittis dictum a eu ipsum. Maecenas dapibus rutrum sapien in elementum. Ut et risus mauris. In a fringilla ante. Nam quis imperdiet mauris, et vehicula nisi. In dictum tincidunt odio, ut consectetur tortor viverra sit amet. Maecenas eu dictum ante. Nulla porta fringilla varius.
+
+		Pellentesque congue libero eu congue lacinia. Integer et euismod ante. Mauris tincidunt mi risus, sed semper ex eleifend vitae. Quisque dictum nisl tincidunt sodales consectetur. Morbi interdum tellus dolor, ac eleifend eros venenatis at. Aliquam ornare id justo et varius. Nulla id vulputate felis, non hendrerit neque. Nam libero neque, malesuada in suscipit nec, dapibus et urna. In a dui urna. Praesent nunc dolor, pharetra fermentum nunc ullamcorper, volutpat elementum sem. Sed faucibus ac tellus sed ullamcorper. Etiam mollis nibh vel sapien imperdiet posuere. Vestibulum tortor leo, tincidunt eget orci eget, vehicula euismod ligula.
+	</p>
+	</ion-grid>
+	
+</ion-content>
+<ion-footer>
+  <ion-tabs class="tabs">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button [routerLink]="['/wallet']">
+      <ion-icon name="wallet"></ion-icon>
+      <ion-label>Wallet</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/maintenance']">
+      <ion-icon name="flame"></ion-icon>
+      <ion-label>Latest Arrival</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/offers']">
+      <ion-icon name="gift"></ion-icon>
+      <ion-label>Offers</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="checkLogin()">
+      <ion-icon name="cart"></ion-icon>
+      <ion-label>Cart</ion-label>
+      <ion-badge *ngIf='cart'>{{cart}}</ion-badge>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+</ion-footer>
