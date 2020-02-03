@@ -1,0 +1,53 @@
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+.tbclr{
+  --background: rgba(139, 245, 31, 0.9098039215686274);
+  color: white;
+}
+.pd-0{
+  padding: 0;
+}
+.prd-mg-btm{
+   margin-bottom: -20px;
+}
+.card-2{
+  padding: 10px;
+    height: 220px;
+    margin: 2px;
+}
+.img{
+  height: 85px;
+    width: 100%;
+}
+.h4{
+  font-size: 15px;
+    /* margin: 0; */
+    color: #000000d6;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+.p3{
+  margin:0;
+  font-size: 15px;
+}
+.btn-1{
+  margin-top: 10px;
+    width: 195px;
+    margin-left: -18px;
+    height: 40px;
+    --background: #8bf51fe8;
+}
+.price-mg{
+    margin-top: -10px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #8ee239;
+    font-size: 10px;
+}
+.mrp-mg{
+  font-weight: bold;
+    color: #c31515;
+    margin-top: 0;
+    font-size: 10px;
+}

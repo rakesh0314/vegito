@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-buttons slot="start" >
+            <ion-menu-button class="ham backbtn"> </ion-menu-button>
+        </ion-buttons>
+    <ion-title>User Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="profile">
+	<ion-grid>
+		<ion-row>
+			<ion-col size="3"></ion-col>
+			<ion-col size="6">
+				<ion-card class="card">
+					<ion-img *ngIf="!profile.image" src="../assets/images/no-image.png" class="image"></ion-img>
+					<ion-img *ngIf="profile.image" src="https://vegito.in/{{profile.image}}" class="image"></ion-img>
+					<ion-card-content>
+						<ion-button color="medium" size="large" (click)="cropUpload()">
+							<ion-icon name="camera"></ion-icon>
+						  </ion-button>
+					</ion-card-content>
+				</ion-card>
+			</ion-col>
+			<ion-col size="3"></ion-col>
+		</ion-row>
+	</ion-grid>
+	
+	<ion-grid class="grid-pd grid-border">
+		<ion-row class="border-bt">
+			<ion-col size="12">
+				<ion-icon name="person"></ion-icon><ion-text class="stats">  <p *ngIf="profile.clt_name!='' else noname">{{profile.clt_name}}</p><ng-template #noname> No Name</ng-template>{{profile.clt_name}}</ion-text>
+			</ion-col>
+			
+			
+		</ion-row>
+		<ion-row class="border-bt">
+			<ion-col size="12">
+				<ion-icon name="mail"></ion-icon><ion-text class="stats">  <p *ngIf="profile.clt_email!='' else nomail">{{profile.clt_email}}</p><ng-template #nomail> No Mail</ng-template></ion-text>
+			</ion-col>
+			
+		</ion-row>
+		<ion-row class="border-bt">
+			<ion-col size="12">
+				<ion-icon name="contact"></ion-icon><ion-text class="stats">  {{profile.clt_conno}}</ion-text>
+			</ion-col>
+			
+		</ion-row>
+		<ion-row class="border-bt">
+			<ion-col size="12">
+				<ion-icon name="locate"></ion-icon><ion-text class="stats">  Address</ion-text>
+			</ion-col>
+			
+		</ion-row>
+		<ion-row>
+			<ion-col size="4"></ion-col>
+			<ion-col>
+					<ion-button size="medium" expand="block" class="btn-edit" [routerLink]='["/edit-userprofile"]'>Edit</ion-button>
+			</ion-col>
+			<ion-col size="4"></ion-col>
+		</ion-row>
+
+	</ion-grid>
+	
+			
+</ion-content>
+
+

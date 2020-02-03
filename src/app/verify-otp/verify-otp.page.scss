@@ -1,0 +1,35 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+ion-input {
+	border: solid 1px #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+a,u {
+    text-decoration: none;
+
+}
+
+a {
+    text-align: center;
+    font-size: 14px;
+}
+.tbclr {
+    --background: #8bf51fe8;
+    color: white;
+}
+
+.error{
+    color: red;
+    font-size: 13px;
+    text-align: center;
+}
