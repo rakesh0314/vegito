@@ -9,6 +9,8 @@
 	margin: 0;
     border-radius: 5px;
     margin-bottom: 10px;
+    margin-right: 25px;
+    margin-left: 25px;
 }
 .chip{
 	--background: #f03244;
@@ -17,7 +19,6 @@
 	margin-top: 15px;
 }
 .gd-pd{
-	padding: 20px;
 	border-top: 2px solid gray;
 
 }
@@ -41,4 +42,11 @@
 	font-weight: bold;
 	margin-top: 0;
 	font-size: 20px;
+}
+.active{
+	color: #55bf4c;
+}
+.tabs{
+  position: unset;
+  contain: none;
 }

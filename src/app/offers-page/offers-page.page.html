@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Offers Page</ion-title>
+  	<ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Offers</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -50,7 +53,7 @@
 <ion-footer>
   <ion-tabs class="tabs">
   <ion-tab-bar slot="bottom">
-    <ion-tab-button [routerLink]="['/wallet']">
+    <ion-tab-button  [routerLink]="['/wallet']">
       <ion-icon name="wallet"></ion-icon>
       <ion-label>Wallet</ion-label>
     </ion-tab-button>
@@ -60,7 +63,7 @@
       <ion-label>Latest Arrival</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button [routerLink]="['/offers']">
+    <ion-tab-button class="active" [routerLink]="['/offers']">
       <ion-icon name="gift"></ion-icon>
       <ion-label>Offers</ion-label>
     </ion-tab-button>
