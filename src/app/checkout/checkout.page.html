@@ -23,14 +23,16 @@
 						<ion-card-title><ion-icon name="pin"></ion-icon></ion-card-title>
 					</ion-card-header>
 				</ion-col>
-				<ion-col size="6">
-					<ion-card-header>
-						<p class="address_font">user address</p>
+				<ion-col size="10">
+					<ion-card-header *ngIf="address" class="mt-41">
+						<h6 style="font-weight: 900; ">{{address.category}}</h6>
+					<p><b>House No:</b> {{address.house_no}} <b>Street No:</b> {{address.street_no}}, {{address.landmark}}, 
+						{{address.city}}, {{address.zip_code}}
+					</p>
 					</ion-card-header>
-				</ion-col>
+					<ion-card-header *ngIf="!address"></ion-card-header>
 			<!-- </ng-template>  -->
-  			<ion-col size="2">
-  				<ion-button color="tertiary" size='small' [routerLink]="['/deliveryaddress/url']">Change</ion-button>
+  				<ion-button class="btn-chnageads" color="tertiary" size='small' [routerLink]="['/delivery-address/pay']">Change</ion-button>
   			</ion-col>
   		</ion-row>
   	</ion-grid>

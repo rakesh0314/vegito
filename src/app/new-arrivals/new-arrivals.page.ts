@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../service/api.service';
 
 @Component({
   selector: 'app-new-arrivals',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewArrivalsPage implements OnInit {
 
-  constructor() { }
+  latest_prod:any;
+  imgurl="https://vegito.in";
+  constructor(private apiService:ApiService) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter()
+  {
+    this.apiService.latest().subscribe(res=>
+      {
+        this.latest_prod = res;
+        console.log(this.latest_prod);
+      })
   }
 
 }

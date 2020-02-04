@@ -145,4 +145,25 @@ export class ApiService {
     const url = `${apiUrl}/latest_product`;
     return this.httpClient.get(url,httpOptions);
   }
+
+  addAddress(data,id):Observable<any>
+  {
+    const url = `${apiUrl}/AddClientNewAddress`
+    const header = {'Auth_key': 'InfinityTest','Service':'Vegito','ID':id};
+    return this.httpClient.post(url,data,{headers:header});
+  }
+
+  getAddresses(res):Observable<any>
+  {
+    const url = `${apiUrl}/getaddress`
+    const header = {'Auth_key': 'InfinityTest','Service':'Vegito','ID':res.user_id};
+    return this.httpClient.get(url,{headers:header});
+  }
+
+  clientlastAddress(res):Observable<any>
+  {
+    const url = `${apiUrl}/clientaddress`
+    const header = {'Auth_key': 'InfinityTest','Service':'Vegito','ID':res.user_id};
+    return this.httpClient.get(url,{headers:header});
+  }
 }

@@ -29,17 +29,18 @@ export class ProductDetailsPage implements OnInit {
       {
         this.product = res.myproduct;
         this.productsx = res.products;
-        for(let i=0;i<4;i++)
-        {
-          this.productsx[i].unitid = this.productsx[i].units[0].unit_id;
-          this.productsx[i].mrp = this.productsx[i].units[0].mrpprice;
-          this.productsx[i].sell =this.productsx[i].units[0].sellprice;
-        }
         if(this.product)
         {
           this.product.unitid = this.product.units[0].unit_id;
           this.product.mrp = this.product.units[0].mrpprice;
           this.product.sell = this.product.units[0].sellprice;
+          console.log(this.product)
+        }
+        for(let i=0;i<4;i++)
+        {
+          this.productsx[i].unitid = this.productsx[i].units[0].unit_id;
+          this.productsx[i].mrp = this.productsx[i].units[0].mrpprice;
+          this.productsx[i].sell =this.productsx[i].units[0].sellprice;
         }
       });
       this.cartcount();

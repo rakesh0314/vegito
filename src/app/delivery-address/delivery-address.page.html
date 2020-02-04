@@ -6,30 +6,38 @@
       </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content  *ngIf="address">
 	<h3 class="h3-pd">Delivery Address</h3>
-	<ion-card class="card">
-		
+	<ion-card class="card" *ngIf="curaddress">
 		<ion-grid>
 			<ion-row>
 				<ion-col>
-					<h4>Work</h4>
-					<p>Address</p>
+					<h4>{{curaddress.category}}</h4>
+					<p>House No: {{curaddress.house_no}} Street No: {{curaddress.street_no}}, {{curaddress.landmark}}, 
+						{{curaddress.city}}, {{curaddress.zip_code}}
+					</p>
 				</ion-col>
 			</ion-row>
 		</ion-grid>
 	</ion-card>
 	<h3 class="h3-pd">Saved Address</h3>
-	<ion-card class="card">
-		
+	<div *ngFor="let add of address">
+	<ion-card class="card" *ngIf="add!=curaddress" (click)="addSession(add)">
 		<ion-grid>
 			<ion-row>
 				<ion-col>
-					<h4>Home</h4>
-					<p>Address</p>
+					<h4>{{add.category}}</h4>
+					<p>House No: {{add.house_no}} Street No: {{add.street_no}}, {{add.landmark}}, 
+						{{add.city}}, {{add.zip_code}}
+					</p>
 				</ion-col>
 			</ion-row>
 		</ion-grid>
 	</ion-card>
-	
+	</div>
+	<ion-fab vertical="bottom" horizontal="end" slot="fixed" >
+		<ion-fab-button [routerLink]="['/add-address',type]" class="btn-color">
+		  <ion-icon name="add"></ion-icon>
+		</ion-fab-button>
+	  </ion-fab>
 </ion-content>

@@ -14,23 +14,34 @@
 </ion-header>
 
 <ion-content [scrollEvents]="true" (ionScroll)="contentScroll($event)" (ionScrollStart)="scrollStart(header)">
-  <ion-searchbar #search animated showCancelButton="focus" class="searchbar" (ionChange)="searchproduct($event)"></ion-searchbar>
-  	<ion-slides [options]="{slidesPerView:3}" class="mt-50 slides" *ngIf="category">
+	<ion-grid class="searchbar">
+		<ion-row>
+			<ion-col size="10">
+				<ion-searchbar #search animated showCancelButton="focus" [(ngModel)]="searchdata" (ionCancel)="ionViewWillEnter()"></ion-searchbar>
+			</ion-col>
+			<ion-col size="2">
+				<ion-button class="search-btn" color="dark" fill="clear" (click)="searchproduct()"><ion-icon name="search"></ion-icon></ion-button>
+			</ion-col>
+		</ion-row>
+		<ion-slides [options]="{slidesPerView:3}" class="mt-50 slides" *ngIf="category">
 
-  		<ion-slide *ngFor="let cate of category">
-  			<ion-grid>
-  	<ion-row>
-  		<ion-col class="col-padding" [routerLink]="['/','vegetables',cate.id]">
-  			<ion-card class="card-padding" >
-  				<ion-img src="../assets/images/vegetable.png" class="icons"></ion-img>
-  				<p class="p">{{cate.name}}</p>
-  			</ion-card>
-  		</ion-col>
-  	</ion-row>
-  	</ion-grid>
-  		</ion-slide>
-  	</ion-slides >
-    <ion-slides pager  >
+			<ion-slide *ngFor="let cate of category">
+				<ion-grid>
+		<ion-row>
+			<ion-col class="col-padding" [routerLink]="['/','vegetables',cate.id]">
+				<ion-card class="card-padding" >
+					<!-- <ion-img src="../assets/images/vegetable.png" class="icons"></ion-img> -->
+					<p class="p">{{cate.name}}</p>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+		</ion-grid>
+			</ion-slide>
+		</ion-slides >
+	</ion-grid>
+  
+  	
+    <ion-slides pager >
         <ion-slide class="slides-mg-btm" >
             <ion-img src="../assets/images/slider_banner_1.jpg" class="slider"></ion-img>
         </ion-slide>
@@ -65,8 +76,8 @@
 						</ion-row>
 					</ion-grid>
 					<h4 class="h4">{{product.name}} / {{product.sku}}</h4>
-					<p class="mrp-sld">Mrp: <s>₹ {{product.units.mrpprice}}</s></p>
-					<p class="prc-sld">Price: ₹ {{product.units.sellprice}}</p>
+					<p class="mrp-sld">Mrp: <s>₹ {{product.units[0].mrpprice}}</s></p>
+					<p class="prc-sld">Price: ₹ {{product.units[0].sellprice}}</p>
 				</ion-card>
 			</ion-col>
 		</ion-row>
@@ -149,7 +160,7 @@
       <ion-label>Wallet</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button [routerLink]="['/maintenance']">
+    <ion-tab-button [routerLink]="['/new-arrivals']">
       <ion-icon name="flame"></ion-icon>
       <ion-label>Latest Arrival</ion-label>
     </ion-tab-button>

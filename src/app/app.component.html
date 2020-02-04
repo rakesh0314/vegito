@@ -3,6 +3,7 @@
 		<ion-menu side="start" type="overlay">
 			<ion-header>
 				<ion-toolbar>
+					<ion-title *ngIf="!logstatus">Menu</ion-title>
 					<ion-buttons  slot="end">
 						
 					</ion-buttons>
@@ -64,7 +65,7 @@
 						</ion-item>
 					</ion-menu-toggle>
 					<ion-menu-toggle auto-hide="false">
-						<ion-item *ngIf="logstatus" [routerLink]="['/delivery-address']">
+						<ion-item *ngIf="logstatus" [routerLink]="['/delivery-address/home']">
 							<ion-icon name="locate" slot="start" ></ion-icon>
 							<ion-label >Delivery address</ion-label>
 						</ion-item>

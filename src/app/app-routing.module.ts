@@ -53,7 +53,7 @@ const routes: Routes = [
     loadChildren: () => import('./edit-userprofile/edit-userprofile.module').then( m => m.EditUserprofilePageModule)
   },
   {
-    path: 'delivery-address',
+    path: 'delivery-address/:type',
     loadChildren: () => import('./delivery-address/delivery-address.module').then( m => m.DeliveryAddressPageModule)
   },
   
@@ -94,7 +94,7 @@ const routes: Routes = [
     loadChildren: () => import('./maintenance/maintenance.module').then( m => m.MaintenancePageModule)
   },
   {
-    path: 'search-page',
+    path: 'search-page/:data',
     loadChildren: () => import('./search-page/search-page.module').then( m => m.SearchPagePageModule)
   },
   {
@@ -117,6 +117,11 @@ const routes: Routes = [
     path: 'offers-page',
     loadChildren: () => import('./offers-page/offers-page.module').then( m => m.OffersPagePageModule)
   },
+  {
+    path: 'add-address/:type',
+    loadChildren: () => import('./add-address/add-address.module').then( m => m.AddAddressPageModule)
+  },
+
 ];
 
 @NgModule({

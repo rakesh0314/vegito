@@ -21,6 +21,7 @@ export class CheckoutPage implements OnInit {
   saveAmount=0;
   amount:any;
   product:"";
+  session:any;
   address:"";
   userData={
     firstname:"",
@@ -61,18 +62,11 @@ export class CheckoutPage implements OnInit {
       });
   }
 
-  orderaddress()
-  {
-    this.storageService.getdata('vegiuseradd').then(res=>
-      {
-          this.address=res;
-      });
-  }
-
   ionViewWillEnter()
   {
     this.storageService.getdata('vegisession').then(res=>
       {
+        this.session = res;
         this.apiService.profile(res).subscribe(res2=>
           {
             this.userData.firstname = res2.clt_name;
@@ -80,8 +74,24 @@ export class CheckoutPage implements OnInit {
             this.userData.mobile = res2.clt_conno;
           })
       });
-      this.orderaddress();
       this.products();
+      this.currAdd();
+  }
+
+  currAdd()
+  {
+    this.storageService.getdata('useradd').then(res=>
+      {
+        if(res==null)
+        {
+          this.apiService.clientlastAddress(this.session).subscribe(res1=>
+            {
+              this.address = res1;
+            })
+        }else{
+          this.address = res;
+        }
+      });
   }
 
   validinput()
@@ -96,7 +106,7 @@ export class CheckoutPage implements OnInit {
     {
       this.storageService.getdata("vegisession").then(res=>
         {
-          if(this.order.pay_op)
+          if(this.order.pay_op=='1' && this.address!='')
           {
             this.placeOrders();
           }else{
@@ -119,7 +129,7 @@ export class CheckoutPage implements OnInit {
 
     var options = {
       description: 'Credits',
-      image: 'https://i.imgur.com/3g7nmJC.png',
+      image: 'https://vegito.in/assets/user/images/vegito.png',
       currency: 'INR',
       key: 'rzp_test_qvZi0jfBDGzKzg',
       amount: this.totalAmountsell*100,

@@ -2,7 +2,8 @@ import { Component, Input, Renderer2 } from '@angular/core';
 import { ApiService } from '../service/api.service';
 import { StorageService } from '../service/storage.service';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,7 @@ export class HomePage {
   cartres:"";
   page:0;
   latest_prod:any;
-  
+  searchdata:any;
 
   lastX:any;
 
@@ -30,34 +31,17 @@ export class HomePage {
     private storage: StorageService,
     private router: Router,
     private renderer:Renderer2,
-    private alertctrl:AlertController) 
+    private alertctrl:AlertController,
+    public keyboard:Keyboard,
+    private loadingCtrl:LoadingController) 
     {
+      this.search ="Loading..";
+      console.log(this.search);
     }
 
-    async presentAlert() {
-      const alert = await this.alertctrl.create({
-        message: 'This is an alert message.',
-        buttons: [
-          {
-            text: 'Cancel',
-            role: 'cancel',
-            cssClass: 'secondary',
-            handler: (blah) => {
-              this.apiService.showmsg('Confirm Cancel: blah');
-            }
-          }, {
-            text: 'Okay',
-            handler: () => {
-              this.apiService.showmsg('Confirm Okay');
-            }
-          }
-        ]
-      });
-  
-      await alert.present();
-    }
   ionViewWillEnter()
   {
+    this.search ="Loading...";
     this.apiService.getcategory().subscribe(res=>
       {
         this.category = res;
@@ -91,10 +75,16 @@ export class HomePage {
       })
   }
 
-  allproduct()
+  async allproduct()
   {
+    this.search = "loading";
+    const loader = await this.loadingCtrl.create({
+      message:"Loading.."
+    });
+    loader.present();
     this.apiService.getAllProducts().subscribe(res=>
       {
+        loader.dismiss();
         this.allproducts = res;
         for(let i=0;i<this.allproducts.length;i++)
         {
@@ -112,13 +102,13 @@ export class HomePage {
     this.allproducts[row].unit = this.allproducts[row].units[event.target.value].unit_id;
   }
 
-  searchproduct(e)
+  searchproduct()
   {
     this.search ="Searching Products";
-    if(e.target.value!=''){
+    if(this.searchdata!=''){
       
     this.allproducts ="";
-      this.apiService.seractproduct(e.target.value).subscribe(res=>
+      this.apiService.seractproduct(this.searchdata).subscribe(res=>
         {
           this.search ="";
           if(res!="no")
@@ -131,7 +121,7 @@ export class HomePage {
               this.allproducts[i].unit = this.allproducts[i].units[0].unit_id;
             }
           }else{
-            this.search ="No product found on '"+e.target.value+"'";
+            this.search ="No product found on '"+this.searchdata+"'";
           }
         });
       }else{
@@ -196,7 +186,7 @@ export class HomePage {
   
   contentScroll(event)
   {
-    if(event.detail.scrollTop > Math.max(0, this.lastX))
+    if(event.detail.scrollTop >56)
     {
       this.renderer.setStyle(this.header,'margin-top',`-${this.header.clientHeight}px`);
       this.renderer.setStyle(this.header,'transition','margin-top 300ms');
