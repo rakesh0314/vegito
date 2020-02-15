@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="cate">{{cate.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-grid class="pd-0 prd-mg-btm" >
+  	<ion-row *ngIf="product!='no' else noproduct">
+  		<ion-col size="6" class="pd-0" *ngFor="let item of product">
+  			<ion-card class='card-2' [routerLink]="['/','product-details',item.id]">
+  				<ion-grid>
+  					<ion-row>
+  						<ion-col size="12">
+  							<ion-img src="{{imgurl}}/{{item.image}}" class="img"></ion-img>
+  						</ion-col>
+  					</ion-row>
+  				</ion-grid>
+  				<h4 class="h4">{{item.name}} / {{item.sku}}</h4>
+  				<p class="p3">{{item.units[0].unit}}</p>
+  				<p class="mrp-mg">Mrp: <s>₹ {{item.units[0].mrpprice}}</s></p>
+	            <p class="price-mg">Price: ₹ {{item.units[0].sellprice}}</p>
+  			</ion-card>
+  		</ion-col>
+	  </ion-row>
+	  <ng-template #noproduct>
+		<ion-grid>
+			<ion-row>
+				<ion-col style="text-align: center; margin-top: 50px;">
+					<ion-img style="width: 60%;margin: auto;" src="../assets/images/noprod.png"></ion-img>
+					<ion-label>No Products Available</ion-label>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	  </ng-template>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+	<ion-tabs class="tabs">
+	<ion-tab-bar slot="bottom">
+	  <ion-tab-button class="active" [routerLink]="['/wallet']">
+		<ion-icon name="wallet"></ion-icon>
+		<ion-label>Wallet</ion-label>
+	  </ion-tab-button>
+  
+	  <ion-tab-button [routerLink]="['/new-arrivals']">
+		<ion-icon name="flame"></ion-icon>
+		<ion-label>Latest Arrival</ion-label>
+	  </ion-tab-button>
+  
+	  <ion-tab-button [routerLink]="['/offers']">
+		<ion-icon name="gift"></ion-icon>
+		<ion-label>Offers</ion-label>
+	  </ion-tab-button>
+  
+	  <ion-tab-button (click)="checkLogin()">
+		<ion-icon name="cart"></ion-icon>
+		<ion-label>Cart</ion-label>
+		<ion-badge *ngIf='cart'>{{cart}}</ion-badge>
+	  </ion-tab-button>
+	</ion-tab-bar>
+  </ion-tabs>
+</ion-footer>
+  

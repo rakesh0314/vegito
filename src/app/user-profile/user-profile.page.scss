@@ -1,0 +1,82 @@
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.tbclr{
+  --background: rgba(139, 245, 31, 0.9098039215686274);
+  color: white;
+}
+
+
+.image{
+	object-fit: cover;
+	// height: 150px;
+}
+.transparent{
+	background: rgba(0, 0, 0, 0.04);
+}
+.card{
+	margin: 0;
+    border-radius: 50%;
+    height: 25vh;
+}
+.align{
+	margin-top: 100%;
+    height: 35%;
+    width: 65%;
+    border:4px solid white;
+    margin-left: 15%;
+    margin-bottom: 10%;
+}
+.backbtn{
+	color: white;
+}
+.username{
+	font-family: "montserrat", sans-serif;
+	margin-left: 15%;
+	text-align: center;
+	color: white;
+	margin-top: 5%;
+
+}
+.stats{
+	text-align: left;
+	font-family: "montserrat",sans-serif;
+	font-size: 15px;
+}
+.stats2{
+	text-align: right;
+	font-family: "montserrat",sans-serif;
+	font-size: 15px;
+}
+
+.grid-pd{
+	padding: 5%;
+	margin-bottom: -10%;
+}
+.stat{
+	text-align: center;
+	font-family: "montserrat", sans-serif;
+	--background: gray;
+	border: 1px solid;
+    padding: 3px;
+    color: red;
+    border-radius: 10px;
+}
+.grid-border{
+	border:1px solid rgba(0, 0, 0, 0.0784313725490196);
+	border-radius: 10px;
+	margin:5%;
+}
+--ion-icon{
+	margin-top: 2px;
+}
+.border-bt{
+	border-bottom:1px solid rgba(0, 0, 0, 0.0784313725490196);
+	padding: 3%;
+}
+.btn-edit{
+	border-radius:10px;
+	--background: #95f533;
+	margin-top: 15%;
+}

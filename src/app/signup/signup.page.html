@@ -1,0 +1,88 @@
+<ion-header translucent>
+    <ion-toolbar>
+        <ion-buttons slot="start" >
+            <ion-back-button defaultHref="home" icon="close"></ion-back-button>
+        </ion-buttons>
+        <h3>Signup</h3>
+
+    </ion-toolbar>
+</ion-header>
+<ion-content class="background">
+	<ion-grid>
+        <form (ngSubmit)="registration()">
+		<ion-row class="row-margin"><h1 class="heading">Signup</h1></ion-row>
+		<ion-row>
+			<ion-col size="12">
+				<ion-item class="border">
+    				<ion-label position="floating"><ion-icon name="phone-portrait"></ion-icon>  Mobile number</ion-label>
+    					<ion-input type="tel" name="mobile" [(ngModel)]="userdata.mobile" (ionChange)="mobileinput()" (ionBlur)="mobileinput()" maxlength="10"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="!mobilevalid">
+                    <div class="error" *ngIf="!validation.mobileblank">
+                        Mobile number is required
+                    </div>
+                    <div class="error" *ngIf="!validation.mobilemin">
+                        Mobile number must be 10 numbers 
+                    </div>
+                    <div class="error" *ngIf="!validation.mobilepat">
+                        Enter valid number
+                    </div>
+                    <div class="error" *ngIf="!validation.duplicate">
+                        This number is also registered
+                    </div>
+                </ion-item>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+            <ion-col size="12">
+                <ion-item class="border">
+                    <ion-label position="floating">  <ion-icon name="lock"></ion-icon>  Password</ion-label>
+                        <ion-input type="password" name="pass1" [(ngModel)]="userdata.pass1" (ionChange)="password1()" (ionBlur)="password1()"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="!pass1valid">
+                    <div class="error" *ngIf="!validation.pass1b">
+                        password is required
+                    </div>
+                    <div class="error" *ngIf="!validation.pass1min">
+                        Password is minimum 8 digits 
+                    </div>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+		<ion-row>
+			<ion-col size="12">
+				<ion-item class="border">
+    				<ion-label position="floating">  <ion-icon name="lock"></ion-icon>  Confirm Password</ion-label>
+    					<ion-input type="password" name="pass2" [(ngModel)]="userdata.pass2" (ionChange)="password2()" (ionBlur)="password2()"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="!pass2valid">
+                    <div class="error" *ngIf="!validation.pass2b">
+                        password is required
+                    </div>
+                    <div *ngIf="!validation.matchpass" class="error">
+                        Passwords are not matched
+                    </div>
+                </ion-item>
+			</ion-col>
+		</ion-row>
+
+		<ion-grid>
+        
+        <ion-row>
+            <ion-col size="3">
+            </ion-col>
+            <ion-col>
+                <ion-button type="submit" class="regbutton" size="medium" expand="block">Signup</ion-button>
+            </ion-col>
+            <ion-col size="3">
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col class="text-center">
+                <ion-label class="link" [routerLink]='["/login"]'>Already a member? Login</ion-label>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    </form>
+	</ion-grid>
+</ion-content>

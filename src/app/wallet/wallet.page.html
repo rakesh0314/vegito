@@ -1,0 +1,52 @@
+<ion-header translucent>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+        <ion-back-button defaultHref="home"icon="close"></ion-back-button>
+      </ion-buttons>
+        <ion-title>Wallet</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+	<ion-grid class="mt">
+		<ion-img src="../assets/images/wallet.png"class="w-icon"></ion-img>
+	</ion-grid>
+	
+	<h2 class="h2">WALLET BALANCE</h2>
+    <h2 class="balance">₹ 10,000</h2>
+    <ion-grid>
+    	<ion-row>
+    		<ion-col>
+    			<ion-button class="btn-clr" size="medium" [routerLink]="['/add-money']" expand="block">Add Money</ion-button>
+    		</ion-col>
+    		<ion-col>
+    			<ion-button class="btn-clr" size="medium" [routerLink]="['/withdraw-money']" expand="block">Withdraw</ion-button>
+    		</ion-col>
+    	</ion-row>
+    </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-tabs class="tabs">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button class="active" [routerLink]="['/wallet']">
+      <ion-icon name="wallet"></ion-icon>
+      <ion-label>Wallet</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/new-arrivals']">
+      <ion-icon name="flame"></ion-icon>
+      <ion-label>Latest Arrival</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/offers']">
+      <ion-icon name="gift"></ion-icon>
+      <ion-label>Offers</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="checkLogin()">
+      <ion-icon name="cart"></ion-icon>
+      <ion-label>Cart</ion-label>
+      <ion-badge *ngIf='cart'>{{cart}}</ion-badge>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+</ion-footer>

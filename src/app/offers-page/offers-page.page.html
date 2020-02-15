@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+  	<ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Offers</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-grid class="gd-pd">
+		<ion-card class="card">
+			<ion-img src="../assets/images/tomato-offer.jpg" class="image"></ion-img>
+			<ion-card-header class="mt">
+    		<ion-card-subtitle >Tomato</ion-card-subtitle>
+    		</ion-card-header>
+    		<ion-grid class="gd">
+    			<ion-row>
+    				<ion-col size="6">
+    					<ion-chip class="chip">
+  						<ion-label>20% OFF</ion-label>
+  						</ion-chip>
+    				</ion-col>
+    				<ion-col size="6">
+    					<p class="dis-price"><s>₹ 34</s></p>
+  						<p class="price">₹ 27</p>
+    				</ion-col>
+    			</ion-row>
+    		</ion-grid>
+    	</ion-card>
+    	<ion-card class="card">
+			<ion-img src="../assets/images/mango-offer.jpg" class="image"></ion-img>
+			<ion-card-header class="mt">
+    		<ion-card-subtitle >Mango</ion-card-subtitle>
+    		</ion-card-header>
+    		<ion-grid class="gd">
+    			<ion-row>
+    				<ion-col size="6">
+    					<ion-chip class="chip">
+  						<ion-label>20% OFF</ion-label>
+  						</ion-chip>
+    				</ion-col>
+    				<ion-col size="6">
+    					<p class="dis-price"><s>₹ 34</s></p>
+  						<p class="price">₹ 27</p>
+    				</ion-col>
+    			</ion-row>
+    		</ion-grid>
+    	</ion-card>
+	</ion-grid>
+	
+</ion-content>
+<ion-footer>
+  <ion-tabs class="tabs">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button  [routerLink]="['/wallet']">
+      <ion-icon name="wallet"></ion-icon>
+      <ion-label>Wallet</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/new-arrivals']">
+      <ion-icon name="flame"></ion-icon>
+      <ion-label>Latest Arrival</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button class="active" [routerLink]="['/offers']">
+      <ion-icon name="gift"></ion-icon>
+      <ion-label>Offers</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="checkLogin()">
+      <ion-icon name="cart"></ion-icon>
+      <ion-label>Cart</ion-label>
+      <ion-badge *ngIf='cart'>{{cart}}</ion-badge>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+</ion-footer>

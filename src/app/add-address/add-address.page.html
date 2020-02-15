@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add-Address</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="floating">House No.</ion-label>
+            <ion-input type="tel" name="house" [(ngModel)]="address.house_no" maxlength="3"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!housevalid" class="text-center">
+            <div *ngIf="!validation.houseb" class="error">
+              House No is required
+            </div>
+            <div *ngIf="!validation.housep" class="error">
+              Only Number is allow
+            </div>
+            <div *ngIf="!validation.housemin" class="error">
+              minimum 2 numbers
+            </div>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="floating">Street No.</ion-label>
+            <ion-input type="tel" name="street" [(ngModel)]="address.street_no" maxlength="4"></ion-input>
+          </ion-item> 
+          <ion-item *ngIf="!streetvalid" class="text-center">
+            <div *ngIf="!validation.streetb" class="error">
+              Street No is required
+            </div>
+            <div *ngIf="!validation.streetp" class="error">
+              Only Number is allow
+            </div>
+            <div *ngIf="!validation.streemin" class="error">
+              minimum 2 numbers
+            </div>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Landmark</ion-label>
+            <ion-input type="text" name="area" [(ngModel)]="address.landmark" maxlength="60"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!areavalid" class="text-center">
+            <div *ngIf="!validation.areab" class="error">
+              Landmark is required
+            </div>
+            <div *ngIf="!validation.areamin" class="error">
+              minimum 6 digits
+            </div>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>City</ion-label>
+            <ion-select name="city" [(ngModel)]="address.city">
+              <ion-select-option value="Durg">Durg</ion-select-option>
+              <ion-select-option value="Bhilai">Bhilai</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item *ngIf="!cityvalid">
+            <div *ngIf="!validation.city" class="error">
+              select city
+            </div>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Pin Code</ion-label>
+            <ion-input type="tel" name="zipcode" [(ngModel)]="address.zip_code" maxlength="6"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!zipvalid" class="text-center">
+            <div *ngIf="!validation.zipb" class="error">
+              Pin code is required
+            </div>
+            <div *ngIf="!validation.zipp" class="error">
+              Only Number are allowed
+            </div>
+            <div *ngIf="!validation.zipmin" class="error">
+              minimum 6 numbers
+            </div>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-text>Category</ion-text>
+        </ion-col>
+        <ion-col size="12">
+          <ion-chip (click)="changeCate('Home')" class="cate-btn">
+            <ion-icon *ngIf="address.category=='Home'"  name="checkmark-circle"></ion-icon>
+            <ion-label>Home</ion-label>
+          </ion-chip>
+          <ion-chip (click)="changeCate('Work')"  class="cate-btn">
+            <ion-icon *ngIf="address.category=='Work'" name="checkmark-circle"></ion-icon>
+            <ion-label>Work</ion-label>
+          </ion-chip>
+          <ion-chip (click)="changeCate('Other')"  class="cate-btn">
+            <ion-icon *ngIf="address.category=='Other'" name="checkmark-circle"></ion-icon>
+            <ion-label>Other</ion-label>
+          </ion-chip>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3"></ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" class="add-button" (click)="addAddress()">Add</ion-button>
+        </ion-col>
+        <ion-col size="3"></ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>

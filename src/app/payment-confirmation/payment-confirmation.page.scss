@@ -1,0 +1,30 @@
+*{
+	font-family: 'Montserrat', sans-serif;
+}
+.bg{
+
+--background: linear-gradient(to top left, rgba(0, 0, 0, 0.46), rgb(26, 27, 25)),url('../../assets/images/login-bg.jpg') no-repeat center / cover; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+h2{
+	text-align: center;
+	color: white;
+	font-weight: bold;
+}
+p{
+	text-align: center;
+	color: white;
+
+}
+.btn1{
+	--background: transparent;
+	border:1px solid white;
+	border-radius: 10px;
+	margin-bottom: 20px;
+}
+.card-mg-t{
+	margin-top: 200px;
+}
+.card{
+	--background: rgba(139, 245, 31, 0.6588235294117647);
+}

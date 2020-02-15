@@ -1,0 +1,185 @@
+<ion-header translucent #header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button> </ion-menu-button>
+        </ion-buttons>
+        <h3 class="logoheader">Vegito</h3>
+        <ion-buttons *ngIf="logstatus" slot="end">
+            <ion-button [routerLink]="['/user-profile']">
+                <ion-icon name="person" slot="end"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true" (ionScroll)="contentScroll($event)" (ionScrollStart)="scrollStart(header)">
+	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content
+		  pullingIcon="arrow-dropdown"
+		  refreshingSpinner="circles">
+		</ion-refresher-content>
+	  </ion-refresher>
+	<ion-grid class="searchbar">
+		<ion-row>
+			<ion-col size="10">
+				<ion-searchbar #search animated showCancelButton="focus" [(ngModel)]="searchdata" (ionFocus)="displaydata()" (ionCancel)="ionViewWillEnter()" (ionClear)="ionViewWillEnter()" (ionBlur)="displayAll($event)"></ion-searchbar>
+			</ion-col>
+			<ion-col size="2">
+				<ion-button color="dark" fill="clear" class="search-btn" (click)="searchproduct()"><ion-icon name="search"></ion-icon></ion-button>
+			</ion-col>
+		</ion-row>
+		<ion-slides [options]="{slidesPerView:3}" class="mt-50 slides" *ngIf="category && display">
+
+			<ion-slide *ngFor="let cate of category">
+				<ion-grid>
+		<ion-row>
+			<ion-col class="col-padding" [routerLink]="['/','vegetables',cate.id]">
+				<ion-card class="card-padding" >
+					<ion-img src="{{imgurl}}/{{cate.image}}" class="icons"></ion-img>
+					<p class="p">{{cate.name}}</p>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+		</ion-grid>
+			</ion-slide>
+		</ion-slides >
+	</ion-grid>
+  
+  	
+    <ion-slides pager *ngIf="display && banners">
+        <ion-slide class="slides-mg-btm" *ngFor="let banner of banners">
+            <ion-img src="{{imgurl}}/{{banner.image}}" class="slider"></ion-img>
+        </ion-slide>
+        <!-- <ion-slide>
+            <ion-img src="../assets/images/slider_banner_2.jpg" class="slider"></ion-img>
+        </ion-slide>
+        <ion-slide>
+            <ion-img src="../assets/images/slider_banner_3.jpg" class="slider"></ion-img>
+        </ion-slide> -->
+	</ion-slides>
+	<div *ngIf="display">
+    <ion-grid class="mg-btm" *ngIf="latest_prod">
+    	<ion-row>
+  		<ion-col size="6">
+  			<p class="p1">New Arrival</p>
+  		</ion-col>
+  		<ion-col size="6">
+			  <!-- <p class="p2">SEE ALL</p> -->
+			  <ion-button fill="clear" class="btn-all" color="danger" [routerLink]="['/new-arrivals']"><b>SEE ALL</b></ion-button>
+  		</ion-col>
+  	</ion-row>
+    </ion-grid>
+    <ion-slides [options]="{slidesPerView:2}" *ngIf="latest_prod">
+		<ion-slide *ngFor="let product of latest_prod">
+	  <ion-grid class="pd-0 prd-mg-btm">
+		<ion-row>
+			<ion-col class="pd-0">
+				<ion-card class='card-2'>
+					<ion-grid>
+						<ion-row>
+							<ion-col size="12">
+								<ion-img src="{{imgurl}}/{{product.image}}" class="img" [routerLink]="['/product-details',product.id]"></ion-img>
+							</ion-col>
+						</ion-row>
+					</ion-grid>
+					<h4 class="h4">{{product.name}} / {{product.sku}}</h4>
+					<p class="mrp-sld">Mrp: <s>₹ {{product.units[0].mrpprice}}</s></p>
+					<p class="prc-sld">Price: ₹ {{product.units[0].sellprice}}</p>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+  </ion-slide>
+  </ion-slides>
+  <ion-grid class="grid-mg">
+    	<ion-row>
+  		<ion-col size="6">
+  			<p class="dn">Daily needs</p>
+  		</ion-col>
+  		<ion-col size="6">
+  			<p class="p2-dn">SEE ALL</p>
+  		</ion-col>
+  	</ion-row>
+    </ion-grid></div>
+  <ion-grid *ngIf="allproducts else noproduct">
+  <ul *ngFor="let product of allproducts;let j=index">
+  	    <li>
+            <ion-grid class="pd-0">
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-img src="{{imgurl}}/{{product.image}}" [routerLink]="['/product-details',product.id]"></ion-img>
+                    </ion-col>
+                    <ion-col size="8" class="col-pd">
+                        <h5 class="text-size">{{product.name}} / {{product.sku}}</h5>
+                        <ion-row>
+                         <ion-col size="12" class="qty-pd">
+                        	 <ion-item>
+	                            <ion-label>Qty</ion-label>
+	                            <ion-select (ionChange)="changeunit($event,j)">
+	                                <ion-select-option *ngFor="let unit of product.units;let i = index" [selected]="i==0" value="{{i}}">{{unit.unit}}</ion-select-option>
+	                                <!-- <ion-select-option>2kg</ion-select-option> -->
+	                            </ion-select>
+	                        </ion-item>
+	                        </ion-col>
+	                    	</ion-row>
+                        <ion-grid class="grd-pd">
+                            <ion-row>
+                            	<ion-col size="6" class="pd-0">
+                            <p class="mrp-mg">Mrp: <s>₹ {{product.mrp}}</s></p>
+	                        <p class="price-mg">Price: ₹ {{product.sell}}</p>
+                         
+                            	</ion-col>
+                                <ion-col size="6">
+                                    <ion-buttons >
+            							<ion-button class="add-btn" (click)="addtoCart(product)">
+                							<ion-icon name="add" class="ionicon"></ion-icon>
+            							</ion-button>
+        							</ion-buttons>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </li>
+	</ul>
+</ion-grid>
+<ng-template #noproduct>
+	<ion-grid>
+		<ion-row>
+			<ion-col style="text-align: center;padding: 40px;opacity: 0.6;font-size: 20px;">
+				<ion-img *ngIf="imgdis" src="../assets/images/noprod.png"></ion-img>
+				<ion-label class=""><b>{{searchel}}</b></ion-label>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ng-template>
+
+</ion-content>
+<ion-footer>
+  <ion-tabs class="tabs">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button [routerLink]="['/wallet']">
+      <ion-icon name="wallet"></ion-icon>
+      <ion-label>Wallet</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/new-arrivals']">
+      <ion-icon name="flame"></ion-icon>
+      <ion-label>Latest Arrival</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/offers']">
+      <ion-icon name="gift"></ion-icon>
+      <ion-label>Offers</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="checkLogin()">
+      <ion-icon name="cart"></ion-icon>
+      <ion-label>Cart</ion-label>
+      <ion-badge *ngIf='cart'>{{cart}}</ion-badge>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+</ion-footer>

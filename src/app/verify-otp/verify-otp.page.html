@@ -1,0 +1,54 @@
+<ion-header translucent>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="home" icon="close"></ion-back-button>
+        </ion-buttons>
+        <h3>Otp verification</h3>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-grid>
+        <p>We have sent you a  4 digit OTP (one time password) Via SMS for password reset</p>
+        <ion-row>
+            <ion-col size="2"></ion-col>
+            <ion-col>
+                <ion-input type="tel" #otp1 required [(ngModel)]="otp.first" maxLength="1" (keyup)="otpController($event,otp2,'')">
+                </ion-input>
+            </ion-col>
+            <ion-col>
+                <ion-input type="tel" #otp2 required [(ngModel)]="otp.second" maxLength="1" (keyup)="otpController($event,otp3,otp1)">
+                </ion-input>
+            </ion-col>
+            <ion-col>
+                <ion-input type="tel" #otp3 required [(ngModel)]="otp.third" maxLength="1" (keyup)="otpController($event,otp4,otp2)">
+                </ion-input>
+            </ion-col>
+            <ion-col>
+                <ion-input type="tel" #otp4 required [(ngModel)]="otp.fourth" maxLength="1"  (keyup)="otpController($event,'',otp3)">
+                </ion-input>
+            </ion-col>
+            <ion-col size="2"></ion-col>
+        </ion-row>
+        <ion-row *ngIf="!error.otpvalid || !error.otpblank">
+            <ion-col size="2"></ion-col>
+            <ion-col size="8">
+                <div class="error" *ngIf="!error.otpblank">
+                    Please enter your OTP
+                </div>
+                <div class="error" *ngIf="!error.otpvalid">
+                    your OTP is incorrect 
+                </div>
+            </ion-col>
+            <ion-col size="2"></ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="3"></ion-col>
+            <ion-col size="6"><ion-button (click)="verifyotp()" color="success" expand="block">Verify OTP</ion-button></ion-col>
+            <ion-col size="3"></ion-col>
+        </ion-row>
+        <p>Didn't Received the OTP? </p>
+        <a>
+          <p (click)="resendotp()">Resend code?</p>
+        </a>
+    </ion-grid>
+</ion-content>
